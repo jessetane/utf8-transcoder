@@ -8,28 +8,18 @@ var bytes = new Uint8Array(Buffer.from(string))
 
 tape('encode', t => {
   t.plan(isBrowser ? 3 : 2)
-  var encoded = {
-    buffer: bytes,
-    utf8js: new Uint8Array(utf8js.encode(string).split('').map(c => c.charCodeAt(0))),
-    utf8transcoder: new Uint8Array(utf8transcoder.encode(string))
-  }
-  t.deepEqual(encoded.buffer, encoded.utf8js)
-  t.deepEqual(encoded.buffer, encoded.utf8transcoder)
+  t.deepEqual(bytes, new Uint8Array(utf8js.encode(string).split('').map(c => c.charCodeAt(0))))
+  t.deepEqual(bytes, new Uint8Array(utf8transcoder.encode(string)))
   if (isBrowser) {
-    t.deepEqual(encoded.buffer, new TextEncoder().encode(string))
+    t.deepEqual(bytes, new TextEncoder().encode(string))
   }
 })
 
 tape('decode', t => {
   t.plan(isBrowser ? 3 : 2)
-  var decoded = {
-    buffer: Buffer.from(bytes).toString(),
-    utf8js: utf8js.decode(String.fromCharCode.apply(String, bytes)),
-    utf8transcoder: utf8transcoder.decode(bytes)
-  }
-  t.deepEqual(decoded.buffer, decoded.utf8js)
-  t.deepEqual(decoded.buffer, decoded.utf8transcoder)
+  t.deepEqual(string, utf8js.decode(String.fromCharCode.apply(String, bytes)))
+  t.deepEqual(string, utf8transcoder.decode(bytes))
   if (isBrowser) {
-    t.deepEqual(decoded.buffer, new TextDecoder().decode(bytes))
+    t.deepEqual(string, new TextDecoder().decode(bytes))
   }
 })

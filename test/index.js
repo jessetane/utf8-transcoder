@@ -7,7 +7,7 @@ var string = 'aаࠀ😸' // 1,2,3 and 4 byte codepoints
 var bytes = new Uint8Array(Buffer.from(string))
 
 tape('encode', t => {
-  t.plan(isBrowser ? 4 : 3)
+  t.plan(isBrowser ? 3 : 2)
   var encoded = {
     buffer: bytes,
     utf8js: new Uint8Array(utf8js.encode(string).split('').map(c => c.charCodeAt(0))),
@@ -21,7 +21,7 @@ tape('encode', t => {
 })
 
 tape('decode', t => {
-  t.plan(isBrowser ? 4 : 3)
+  t.plan(isBrowser ? 3 : 2)
   var decoded = {
     buffer: Buffer.from(bytes).toString(),
     utf8js: utf8js.decode(String.fromCharCode.apply(String, bytes)),

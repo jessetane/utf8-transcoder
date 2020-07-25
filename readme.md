@@ -11,19 +11,24 @@ $ npm install utf8-transcoder
 
 ## Test
 ``` shell
-$ node test
-$ browserify test/index.js > test/build.js
-$ open test/index.html
+$ npm run test
+$ npm run test-browser
 ```
 Warning: the tests are very basic at the moment - they only verify that encoding and decoding work for valid 1, 2, 3 and 4 byte code points. Patches welcome to cover things like replacement chars, errors, etc.
 
 ## Benchmark
 ``` shell
-$ node bench
-$ browserify bench/index.js > bench/build.js
-$ xdg-open bench/index.html
+$ npm run bench
+$ npm run bench-browser
+encode
+TextEncoder: 2.290s
+Buffer: 1.552s
+this module: 932.701ms
+decode
+TextDecoder: 9.256s
+Buffer: 1.439s
+this module: 414.048ms
 ```
-Note that since the TextEncoder APIs are not available in node, they can only be compared in the browser.
 
 ## License
 MIT

@@ -2,10 +2,16 @@
   "name": "utf8-transcoder",
   "version": "1.0.0",
   "description": "Transcode JavaScript strings <> UTF-8 byte arrays",
+  "type": "module",
+  "scripts": {
+    "test": "node test",
+    "test-browser": "PORT=7357 ROOT=test app-server",
+    "bench": "node bench",
+    "bench-browser": "PORT=8080 ROOT=bench app-server"
+  },
   "devDependencies": {
-    "browserify": "^16.2.3",
-    "tape": "^4.4.0",
-    "utf8": "^3.0.0"
+    "app-server": "github:jessetane/app-server#4.1.1",
+    "tap-esm": "^1.1.0"
   },
   "repository": "https://github.com/jessetane/utf8-transcoder.git",
   "author": "Jesse Tane <jesse.tane@gmail.com>"

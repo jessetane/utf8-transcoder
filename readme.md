@@ -16,18 +16,22 @@ $ npm run test-browser
 ```
 Warning: the tests are very basic at the moment - they only verify that encoding and decoding work for valid 1, 2, 3 and 4 byte code points. Patches welcome to cover things like replacement chars, errors, etc.
 
-## Benchmark
+## Bench
+On a chromebook, using node@14.6.0:
 ``` shell
 $ npm run bench
-$ npm run bench-browser
+
+> utf8-transcoder@2.0.1 bench utf8-transcoder
+> node bench
+
 encode
-TextEncoder: 2.290s
-Buffer: 1.552s
-this module: 932.701ms
+TextEncoder: 2.414s
+Buffer: 1.334s
+this module: 994.79ms
 decode
-TextDecoder: 9.256s
-Buffer: 1.439s
-this module: 414.048ms
+TextDecoder: 8.975s
+Buffer: 1.378s
+this module: 418.36ms
 ```
 
 ## License

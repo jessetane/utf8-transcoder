@@ -1,8 +1,8 @@
-import utf8transcoder from './utf8-transcoder/index.js'
+import utf8 from 'utf8-transcoder'
 
 var isBrowser = typeof window !== 'undefined'
 var string = 'aаࠀ😸' // 1,2,3 and 4 byte codepoints
-var bytes = new Uint8Array(utf8transcoder.encode(string))
+var bytes = new Uint8Array(utf8.encode(string))
 var iterations = 0xfffff
 
 console.log('encode')
@@ -19,7 +19,7 @@ if (!isBrowser) {
   console.timeEnd('Buffer')
 }
 console.time('this module')
-for (var i = 0; i < iterations; i++) new Uint8Array(utf8transcoder.encode(string))
+for (var i = 0; i < iterations; i++) new Uint8Array(utf8.encode(string))
 console.timeEnd('this module')
 
 console.log('decode')
@@ -33,5 +33,5 @@ if (!isBrowser) {
   console.timeEnd('Buffer')
 }
 console.time('this module')
-for (var i = 0; i < iterations; i++) utf8transcoder.decode(bytes)
+for (var i = 0; i < iterations; i++) utf8.decode(bytes)
 console.timeEnd('this module')

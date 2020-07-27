@@ -1,9 +1,9 @@
-import tap from './tap-esm/index.js'
-import utf8transcoder from './utf8-transcoder/index.js'
+import tap from 'tap-esm'
+import utf8 from 'utf8-transcoder'
 
 var isBrowser = typeof window !== 'undefined'
 var string = 'aаࠀ😸' // 1,2,3 and 4 byte codepoints
-var bytes = new Uint8Array(utf8transcoder.encode(string))
+var bytes = new Uint8Array(utf8.encode(string))
 
 tap('encode', t => {
   t.plan(!isBrowser ? 2 : 1)
@@ -19,5 +19,5 @@ tap('decode', t => {
     t.arrayEqual(string, Buffer.from(string).toString())
   }
   t.arrayEqual(string, new TextDecoder().decode(bytes))
-  t.arrayEqual(string, utf8transcoder.decode(bytes))
+  t.arrayEqual(string, utf8.decode(bytes))
 })

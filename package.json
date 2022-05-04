@@ -1,6 +1,6 @@
 {
   "name": "utf8-transcoder",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Transcode JavaScript strings <> UTF-8 byte arrays",
   "type": "module",
   "exports": {

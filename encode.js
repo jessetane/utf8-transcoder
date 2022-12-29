@@ -1,4 +1,4 @@
-export default function encode (string, bytes) {
+export default function encode (string, bytes, returnArray) {
   bytes = bytes || []
   var codePoint, leadSurrogate = null
   var length = string.length
@@ -57,5 +57,8 @@ export default function encode (string, bytes) {
       throw new Error('Invalid code point')
     }
   }
-  return bytes
+  if (returnArray) return bytes
+  const u = new Uint8Array(bytes.length)
+  u.set(bytes)
+  return u
 }

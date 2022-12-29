@@ -3,12 +3,12 @@ import utf8 from 'utf8-transcoder'
 
 var isBrowser = typeof window !== 'undefined'
 var string = 'aаࠀ😸' // 1,2,3 and 4 byte codepoints
-var bytes = new Uint8Array(utf8.encode(string))
+var bytes = utf8.encode(string)
 
 tap('encode', t => {
   t.plan(!isBrowser ? 2 : 1)
   if (!isBrowser) {
-    t.arrayEqual(bytes, new Uint8Array(Buffer.from(string)))
+    t.arrayEqual(bytes, Buffer.from(string))
   }
   t.arrayEqual(bytes, new TextEncoder().encode(string))
 })
